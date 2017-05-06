@@ -15,4 +15,8 @@ class ActionsController < ApplicationController
       format.js { render 'twitter_user_response' }
     end
   end
+
+  def fetch_tweets
+
+  end
 end
