@@ -3,12 +3,12 @@ class CreateTwitterUsers < ActiveRecord::Migration[5.0]
     create_table :twitter_users do |t|
       t.string :handle
 
-
       t.timestamps
     end
 
     create_table :tweets do |t|
-      t.string :twitter_user_id
+      t.integer :twitter_user_id
+      t.string :twitter_tweet_id
       t.string :body
       t.datetime :posted_at
 
