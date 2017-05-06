@@ -1,6 +1,6 @@
 class ActionsController < ApplicationController
   def search_twitter_user
-    handle = params[:twitter_user][:handle].gsub(' ', '').gsub('@', '')
+    handle = params[:twitter_user][:handle].gsub(' ', '').gsub('@', '').downcase
 
     @twitter_user = TwitterUser.where('handle = ?', handle).first
     if @twitter_user.blank?
@@ -26,10 +26,10 @@ class ActionsController < ApplicationController
       config.access_token_secret = Rails.application.secrets.twitter_access_token_secret
     end
 
-    recs = client.user_timeline("#{twitter_user.handle}")
+    recs = client.user_timeline("#{twitter_user.handle}", {:exclude_replies => true, :count => 200})
 
     recs.each do |rec|
-      if Tweet.where('twitter_tweet_id = ?', rec.id.to_s).first.blank?
+      if twitter_user.tweets.where('twitter_tweet_id = ?', rec.id.to_s).first.blank?
         t = Tweet.new()
         t.body = rec.text
         t.twitter_tweet_id = rec.id
