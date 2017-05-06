@@ -7,9 +7,11 @@
     </div>
     <div class="panel-body">
       <div class="module_input">
-        <label for="twit-handle">Enter Twitter Handle</label>
-        <input type="text" id="twit-handel" palceholder="@handel">
-        <button type="submit" id="submit" class="btn btn-info">sumbit</button>
+        <%= form_tag search_twitter_user_actions_path, :remote => true, :method => :get do %>
+          <label for="twit-handle">Enter Twitter Handle</label>
+          <%= text_field_tag 'twitter_user[handle]', nil, :placeholder => "@handle" %>
+          <button type="submit" id="submit" class="btn btn-info">Check Tweets</button>
+        <% end %>
       </div>
     </div>
     <div class="panel-footer">
