@@ -1,22 +1,20 @@
 
 <br>
 <div class="col-md-8 col-md-offset-2">
+  <%= form_tag search_twitter_user_actions_path, :remote => true, :method => :get do %>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h2>Search Twitter</h2>
     </div>
     <div class="panel-body">
       <div class="module_input">
-
-        <%= form_tag search_twitter_user_actions_path, :remote => true, :method => :get do %>
-          <label for="twit-handle">Enter Twitter Handle</label>
-          <%= text_field_tag 'twitter_user[handle]', nil, :placeholder => "@handle" %>
-          <button type="submit" id="submit" class="btn btn-info">Check Tweets</button>
-        <% end %>
-
+        <label for="twit-handle">Enter Twitter Handle</label>
+        <%= text_field_tag 'twitter_user[handle]', nil, :placeholder => "@handle" %>
       </div>
     </div>
     <div class="panel-footer">
+      <button type="submit" id="submit" class="btn btn-info">Check Tweets</button>
     </div>
   </div>
+  <% end %>
 </div>

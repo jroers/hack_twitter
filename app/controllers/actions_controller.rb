@@ -26,7 +26,7 @@ class ActionsController < ApplicationController
       config.access_token_secret = Rails.application.secrets.twitter_access_token_secret
     end
 
-    recs = client.user_timeline("#{twitter_user.handle}", {:exclude_replies => true, :count => 200})
+    recs = client.user_timeline("#{twitter_user.handle}", {:exclude_replies => true, :include_rts => false, :count => 200})
 
     recs.each do |rec|
       if twitter_user.tweets.where('twitter_tweet_id = ?', rec.id.to_s).first.blank?
